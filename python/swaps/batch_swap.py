@@ -126,15 +126,15 @@ batch_swap_function = contract_vault.functions.batchSwap(
 )
 
 try:
-	gasEstimate = batch_swap_function.estimateGas()
+	gas_estimate = batch_swap_function.estimateGas()
 except:
-	gasEstimate = 200000
-	print("Failed to estimate gas, attempting to send with", gasEstimate, "gas limit...")
+	gas_estimate = 200000
+	print("Failed to estimate gas, attempting to send with", gas_estimate, "gas limit...")
 
 data = batch_swap_function.buildTransaction(
 	{
 		'chainId': chain_id,
-	    'gas': gasEstimate,
+	    'gas': gas_estimate,
 	    'gasPrice': web3.toWei(gas_price, 'gwei'),
 	    'nonce': web3.eth.get_transaction_count(address),
 	}
