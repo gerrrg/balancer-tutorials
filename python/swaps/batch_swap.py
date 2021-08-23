@@ -18,7 +18,7 @@ address = account.address
 
 # Define network settings
 network = "kovan"
-blockExplorerUrl = "https://kovan.etherscan.io/"
+block_explorer_url = "https://kovan.etherscan.io/"
 chain_id = 42
 gas_price = 2
 
@@ -144,5 +144,5 @@ data = batch_swap_function.buildTransaction(
 signed_tx = web3.eth.account.sign_transaction(data, private_key)
 tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction).hex()
 print("Sending transaction...")
-url = blockExplorerUrl + "tx/" + tx_hash
+url = block_explorer_url + "tx/" + tx_hash
 webbrowser.open_new_tab(url)
