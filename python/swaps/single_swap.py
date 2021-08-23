@@ -18,7 +18,7 @@ address = account.address
 
 # Define network settings
 network = "kovan"
-blockExplorerUrl = "https://kovan.etherscan.io/"
+block_explorer_url = "https://kovan.etherscan.io/"
 chain_id = 42
 gas_price = 2
 
@@ -47,8 +47,8 @@ deadline = 999999999999999999
 pool_BAL_WETH = "0x61d5dc44849c9c87b0856a2a311536205c96c7fd000200000000000000000000"
 
 # Token addresses
-token_BAL 	= "0x41286Bb1D3E870f3F750eB7E1C25d7E48c8A1Ac7"
-token_WETH 	= "0xdFCeA9088c8A88A76FF74892C1457C17dfeef9C1"
+token_BAL 	= "0x41286Bb1D3E870f3F750eB7E1C25d7E48c8A1Ac7".lower()
+token_WETH 	= "0xdFCeA9088c8A88A76FF74892C1457C17dfeef9C1".lower()
 
 # Token data
 token_data = {
@@ -103,15 +103,15 @@ single_swap_function = contract_vault.functions.swap(
 )
 
 try:
-	gasEstimate = single_swap_function.estimateGas()
+	gas_estimate = single_swap_function.estimateGas()
 except:
-	gasEstimate = 100000
-	print("Failed to estimate gas, attempting to send with", gasEstimate, "gas limit...")
+	gas_estimate = 100000
+	print("Failed to estimate gas, attempting to send with", gas_estimate, "gas limit...")
 
 data = single_swap_function.buildTransaction(
 	{
 		'chainId': chain_id,
-	    'gas': gasEstimate,
+	    'gas': gas_estimate,
 	    'gasPrice': web3.toWei(gas_price, 'gwei'),
 	    'nonce': web3.eth.get_transaction_count(address),
 	}
@@ -120,5 +120,5 @@ data = single_swap_function.buildTransaction(
 signed_tx = web3.eth.account.sign_transaction(data, private_key)
 tx_hash = web3.eth.send_raw_transaction(signed_tx.rawTransaction).hex()
 print("Sending transaction...")
-url = blockExplorerUrl + "tx/" + tx_hash
+url = block_explorer_url + "tx/" + tx_hash
 webbrowser.open_new_tab(url)
