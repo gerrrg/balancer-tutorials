@@ -106,8 +106,6 @@ for step in swap_steps:
 	)
 	swaps_step_structs.append(swaps_step_struct)
 
-checksum_tokens = [web3.toChecksumAddress(token) for token in token_addresses]
-
 fund_struct = (
 	web3.toChecksumAddress(fund_settings["sender"]),
 	fund_settings["fromInternalBalance"],
@@ -116,6 +114,7 @@ fund_struct = (
 )
 
 token_limits = [int(Decimal(token_data[token]["limit"]) * 10 ** Decimal(token_data[token]["decimals"])) for token in token_addresses]
+checksum_tokens = [web3.toChecksumAddress(token) for token in token_addresses]
 
 batch_swap_function = contract_vault.functions.batchSwap(	
 	swap_kind,
