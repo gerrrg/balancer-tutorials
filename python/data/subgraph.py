@@ -1,13 +1,10 @@
-# basics
 import json
-import math
-import sys
 
 # thegraph queries
 from gql import gql, Client
 from gql.transport.requests import RequestsHTTPTransport
 
-num_pools_to_query = 20
+num_pools_to_query = 100
 
 # Initialize subgraph
 subgraph_url = "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2"
@@ -48,7 +45,7 @@ for pool in response["pools"]:
 		weight
 	  }}
 	}}
-	''';
+	'''
 	formatted_query_string = pool_token_query.format(pool_id=pool["id"])
 	token_response = client.execute(gql(formatted_query_string))
 	pool["poolTokens"] = token_response["poolTokens"]
