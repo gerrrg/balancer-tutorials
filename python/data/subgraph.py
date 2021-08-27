@@ -4,8 +4,6 @@ import json
 from gql import gql, Client
 from gql.transport.requests import RequestsHTTPTransport
 
-num_pools_to_query = 100
-
 # Initialize subgraph
 subgraph_url = "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2"
 balancer_transport=RequestsHTTPTransport(
@@ -27,6 +25,7 @@ query {{
   }}
 }}
 '''
+num_pools_to_query = 100
 formatted_query_string = query_string.format(first=num_pools_to_query, skip=0)
 response = client.execute(gql(formatted_query_string))
 
