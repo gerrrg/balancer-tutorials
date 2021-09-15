@@ -106,7 +106,7 @@ async function buildAndSend() {
         console.log("Failed to estimate gas, attempting to send with", gas_estimate, "gas limit...");
     }
 
-    const txObject = {
+    const tx_object = {
         'chainId':  chain_id,
         'gas':      web3.utils.toHex(gas_estimate),
         'gasPrice': web3.utils.toHex(web3.utils.toWei(gas_price,'gwei')),
@@ -115,8 +115,8 @@ async function buildAndSend() {
         'to':       address_vault
     };
 
-    const tx = new Tx(txObject);
-    const signed_tx = await web3.eth.accounts.signTransaction(txObject, private_key)
+    const tx = new Tx(tx_object);
+    const signed_tx = await web3.eth.accounts.signTransaction(tx_object, private_key)
                         .then(signed_tx => web3.eth.sendSignedTransaction(signed_tx['rawTransaction'])
                         );
     console.log("Sending transaction...")
