@@ -116,7 +116,7 @@ async function buildAndSend() {
     };
 
     const tx = new Tx(tx_object);
-    const signed_tx = await web3.eth.accounts.signTransaction(tx_object, private_key);
+    const signed_tx = await web3.eth.accounts.signTransaction(tx_object, private_key)
                         .then(signed_tx => web3.eth.sendSignedTransaction(signed_tx['rawTransaction'])
                         );
     console.log("Sending transaction...");
