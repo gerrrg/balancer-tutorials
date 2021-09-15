@@ -24,7 +24,7 @@ gas_price = 2
 
 # Load contract for Balancer Vault
 address_vault = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
-path_abi_vault = '../abis/Vault.json'
+path_abi_vault = '../../abis/Vault.json'
 with open(path_abi_vault) as f:
   abi_vault = json.load(f)
 contract_vault = web3.eth.contract(
