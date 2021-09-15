@@ -22,7 +22,7 @@ const gas_price = "2"
 
 // Load contract for Balancer Vault
 const address_vault = "0xBA12222222228d8Ba445958a75a0704d566BF2C8";
-const path_abi_vault = "../abis/Vault.json";
+const path_abi_vault = "../../abis/Vault.json";
 let abi_vault = JSON.parse(fs.readFileSync(path_abi_vault));
 const contract_vault = new web3.eth.Contract(abi_vault, address_vault);
 
