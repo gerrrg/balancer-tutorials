@@ -69,7 +69,7 @@ const swap = {
 // SwapKind is an Enum. This example handles a GIVEN_IN swap.
 // https://github.com/balancer-labs/balancer-v2-monorepo/blob/0328ed575c1b36fb0ad61ab8ce848083543070b9/pkg/vault/contracts/interfaces/IVault.sol#L497
 // 0 = GIVEN_IN, 1 = GIVEN_OUT
-const swap_kind = 0
+const swap_kind = 0;
 
 const swap_struct = {
     poolId: swap["poolId"],
