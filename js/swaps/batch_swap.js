@@ -1,7 +1,7 @@
 const Web3 = require("web3");
 const fs = require("fs");
 const BigNumber = require("bignumber.js");
-const Tx = require('ethereumjs-tx').Transaction
+const Tx = require('ethereumjs-tx').Transaction;
 const open = require('open');
 
 // Load private key and connect to RPC endpoint
@@ -15,10 +15,10 @@ const account = web3.eth.accounts.privateKeyToAccount(private_key);
 const address = account.address;
 
 // Define network settings
-const network = "kovan"
-const block_explorer_url = "https://kovan.etherscan.io/"
-const chain_id = "42"
-const gas_price = "2"
+const network = "kovan";
+const block_explorer_url = "https://kovan.etherscan.io/";
+const chain_id = "42";
+const gas_price = "2";
 
 // Load contract for Balancer Vault
 const address_vault = "0xBA12222222228d8Ba445958a75a0704d566BF2C8";
@@ -32,7 +32,7 @@ const fund_settings = {
     "recipient":            address,
     "fromInternalBalance":  false,
     "toInternalBalance":    false
-}
+};
 
 // When should the transaction timeout?
 const deadline = BigNumber(999999999999999999);
@@ -43,7 +43,7 @@ const pool_BAL_WETH =   "0x61d5dc44849c9c87b0856a2a311536205c96c7fd0002000000000
 
 // Token addresses (checksum format)
 const token_BAL = "0x41286Bb1D3E870f3F750eB7E1C25d7E48c8A1Ac7".toLowerCase();
-const token_USDC  = "0xc2569dd7d0fd715B054fBf16E75B001E5c0C1115".toLowerCase()
+const token_USDC  = "0xc2569dd7d0fd715B054fBf16E75B001E5c0C1115".toLowerCase();
 const token_WETH = "0xdFCeA9088c8A88A76FF74892C1457C17dfeef9C1".toLowerCase();
 
 // Token data
@@ -85,7 +85,7 @@ const swap_steps = [
 // SwapKind is an Enum. This example handles a GIVEN_IN swap.
 // https://github.com/balancer-labs/balancer-v2-monorepo/blob/0328ed575c1b36fb0ad61ab8ce848083543070b9/pkg/vault/contracts/interfaces/IVault.sol#L497
 // 0 = GIVEN_IN, 1 = GIVEN_OUT
-const swap_kind = 0
+const swap_kind = 0;
 
 var token_addresses = Object.keys(token_data);
 token_addresses.sort();
@@ -116,7 +116,7 @@ const fund_struct = {
 const token_limits = [];
 const checksum_tokens = [];
 for (const token of token_addresses) {
-    token_limits.push(BigNumber((token_data[token]["limit"]) * Math.pow(10, token_data[token]["decimals"])).toString())
+    token_limits.push(BigNumber((token_data[token]["limit"]) * Math.pow(10, token_data[token]["decimals"])).toString());
     checksum_tokens.push(web3.utils.toChecksumAddress(token));
 }
 
@@ -150,9 +150,9 @@ async function buildAndSend() {
 
     const tx = new Tx(tx_object);
     const signed_tx = await web3.eth.accounts.signTransaction(tx_object, private_key)
-                            .then(signed_tx => web3.eth.sendSignedTransaction(signed_tx['rawTransaction']));
-    console.log("Sending transaction...")
-    const tx_hash = signed_tx["logs"][0]["transactionHash"]
+                        .then(signed_tx => web3.eth.sendSignedTransaction(signed_tx['rawTransaction']));
+    console.log("Sending transaction...");
+    const tx_hash = signed_tx["logs"][0]["transactionHash"];
     const url = block_explorer_url + "tx/" + tx_hash;
     open(url);
 }
