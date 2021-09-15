@@ -9,4 +9,4 @@ export KEY_PRIVATE=""
 #enter infura API key at the end of URL, or replace with a custom RPC
 export RPC_ENDPOINT="https://kovan.infura.io/v3/<YOUR_INFURA_API_KEY>"
 
-node single_swap.js
+node batch_swap.js
