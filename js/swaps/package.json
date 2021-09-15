@@ -1,0 +1,27 @@
+{
+  "name": "balancer-tutorials-js",
+  "version": "0.0.1",
+  "description": "Sample scripts for a swaps using Balancer V2",
+  "main": "single_swap.js",
+  "scripts": {
+    "start": "node single_swap.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gerrrg/balancer-tutorials.git"
+  },
+  "author": "Mike B & Gerg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gerrrg/balancer-tutorials/issues"
+  },
+  "homepage": "https://github.com/gerrrg/balancer-tutorials#readme",
+  "dependencies": {
+    "bignumber": "^1.1.0",
+    "ethereumjs-tx": "^2.1.2",
+    "open": "^8.2.1",
+    "web3": "^1.5.2",
+    "web3-eth-abi": "^1.5.2"
+  }
+}
