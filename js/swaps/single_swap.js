@@ -56,14 +56,14 @@ token_data[token_WETH] =
     {
         "symbol": "WETH",
         "decimals": "18",
-        "limit": "0.00002"
+        "limit": "1"
     };
 
 const swap = {
     "poolId": pool_BAL_WETH,
     "assetIn": token_WETH,
     "assetOut": token_BAL,
-    "amount": 0.00002
+    "amount": 1
 };
 
 // SwapKind is an Enum. This example handles a GIVEN_IN swap.
