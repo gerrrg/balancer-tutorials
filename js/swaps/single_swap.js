@@ -1,7 +1,7 @@
 const Web3 = require("web3");
 const fs = require("fs");
 const BigNumber = require("bignumber.js");
-const Tx = require('ethereumjs-tx').Transaction
+const Tx = require('ethereumjs-tx').Transaction;
 const open = require('open');
 
 // Load private key and connect to RPC endpoint
@@ -15,10 +15,10 @@ const account = web3.eth.accounts.privateKeyToAccount(private_key);
 const address = account.address;
 
 // Define network settings
-const network = "kovan"
-const block_explorer_url = "https://kovan.etherscan.io/"
-const chain_id = "42"
-const gas_price = "2"
+const network = "kovan";
+const block_explorer_url = "https://kovan.etherscan.io/";
+const chain_id = "42";
+const gas_price = "2";
 
 // Load contract for Balancer Vault
 const address_vault = "0xBA12222222228d8Ba445958a75a0704d566BF2C8";
@@ -32,7 +32,7 @@ const fund_settings = {
     "recipient":            address,
     "fromInternalBalance":  false,
     "toInternalBalance":    false
-}
+};
 
 // When should the transaction timeout?
 const deadline = BigNumber(999999999999999999);
@@ -116,11 +116,11 @@ async function buildAndSend() {
     };
 
     const tx = new Tx(tx_object);
-    const signed_tx = await web3.eth.accounts.signTransaction(tx_object, private_key)
+    const signed_tx = await web3.eth.accounts.signTransaction(tx_object, private_key);
                         .then(signed_tx => web3.eth.sendSignedTransaction(signed_tx['rawTransaction'])
                         );
-    console.log("Sending transaction...")
-    const tx_hash = signed_tx["logs"][0]["transactionHash"]
+    console.log("Sending transaction...");
+    const tx_hash = signed_tx["logs"][0]["transactionHash"];
     const url = block_explorer_url + "tx/" + tx_hash;
     open(url);
 }
